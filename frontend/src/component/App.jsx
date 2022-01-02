@@ -119,13 +119,14 @@ function App() {
             </div>
             <div>
                 <ul>
-                    {items.filter((x) => x.liststatus === "0").map((x) =>
+                    {items.filter((x,index) => x.liststatus === "0").map((x,index) =>
                         <ToDoitem
                             text={x.listdata}
                             key={x._id}
                             id={x._id}
                             data={items}
                             setItems={setItems}
+                            index={index+1}
                         />)
                     }
                 </ul>
@@ -133,18 +134,19 @@ function App() {
 
             <Dialog open={open}>
                 <div style={{display:"flex"}}>
-                    <div style={{ paddingLeft: 200}}>Trash</div>
+                    <div className="TrashStyle" style={{ marginLeft: 200}}>Trash</div>
                     <div style={{ paddingLeft: 200 }}><CloseIcon onClick={() => handleClose()} /></div>
                 </div>
                 <div>
                 <ul>
-                    { items.filter((x) => x.liststatus === "1").map((x) =>
+                    { items.filter((x,index) => x.liststatus === "1").map((x,index) =>
                         <TrashItem
                             text={x.listdata}
                             key={x._id}
                             id={x._id}
                             data={items}
                             setItems={setItems}
+                            index={index+1}
                         />
                         // <li>{x.listdata}</li>
                         )
